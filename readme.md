@@ -323,6 +323,55 @@ Content-Type: application/json
     "message": "html-5.0.0 runtime is unknown"
 }
 ```
+#### Executing Multiple Files
+
+- **main.py**: The main script that imports and uses the `MathOperations` class.
+- **math_operations.py**: A helper module containing the `MathOperations` class with basic mathematical operations.
+- **`files[0]`** must always be the main file for execution.
+- Additional files (e.g., modules or libraries) should follow in the `files` array.
+
+##### Request Example
+
+Below is a sample JSON request for executing Python code:
+
+```json
+{
+    "language": "python",
+    "version": "3.10.0",
+    "files": [
+        {
+            "name": "main.py",
+            "content": "from math_operations import MathOperations\n\ndef main():\n    try:\n        print(\"Starting main...\")\n        operations = MathOperations()\n        result = operations.add(1, 2)\n        print(f\"Result of addition: {result}\")\n    except Exception as e:\n        print(f\"Error occurred: {e}\")\n\nif __name__ == \"__main__\":\n    main()\n"
+        },
+        {
+            "name": "math_operations.py",
+            "content": "class MathOperations:\n    def add(self, a, b):\n        return a + b\n"
+        }
+    ],
+    "stdin": "",
+    "args": [],
+    "compile_timeout": 10000,
+    "run_timeout": 3000,
+    "compile_memory_limit": -1,
+    "run_memory_limit": -1
+}
+```
+
+##### Example Response
+
+```json
+{
+    "language": "python",
+    "version": "3.10.0",
+    "run": {
+        "stdout": "Starting main...\nResult of addition: 3\n",
+        "stderr": "",
+        "code": 0,
+        "signal": null,
+        "output": "Starting main...\nResult of addition: 3\n"
+    }
+}
+```
 
 #### Interactive execution endpoint (not available through the public API)
 
