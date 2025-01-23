@@ -328,7 +328,7 @@ Content-Type: application/json
 - **main.py**: The main script that imports and uses the `MathOperations` class.
 - **math_operations.py**: A helper module containing the `MathOperations` class with basic mathematical operations.
 - **`files[0]`** must always be the main file for execution.
-- Additional files (e.g., modules or libraries) should follow in the `files` array.
+- Additional files should follow in the `files` array.
 
 ##### Request Example
 
